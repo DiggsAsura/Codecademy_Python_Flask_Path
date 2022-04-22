@@ -50,3 +50,23 @@ Using the filter dictsort in a loop outputs the key/value pairs just like items(
 
 
 '''
+
+# This task is done in the html files
+
+from flask import Flask, render_template
+from helper3 import recipes, descriptions, ingredients, instructions
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+  return render_template("index.html", template_recipes=recipes)
+
+@app.route('/recipe/<int:id>')
+def recipe(id):
+  return render_template("recipe.html",
+  template_recipe=recipes[id],
+  template_description=descriptions[id],
+  template_ingredients=ingredients[id],
+  template_instructions=instructions[id])
+
