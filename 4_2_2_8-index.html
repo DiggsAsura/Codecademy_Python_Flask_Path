@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Cooking By Myself</h1>
+<p>Welcome to my cookbook. These are recipes I like.</p>
+
+{% for id, name in template_recipes.items() %}
+<p><a href="{{ url_for('recipe', id=id }} "></a></p>
+{% endfor %}
+
+<form action="/" method="POST">
+  {{ template_form.hidden_tag() }}
+  <p>
+    {{ template_form.recipe.label }}
+    {{ template_form.recipe() }}
+  </p>
+  <table><tr>
+    {% for btn in template_form.recipe.type %}
+    <!-- Task -->
+    <td>{{ btn() }}</td>
+    <td>{{ btn.label }}</td>
+    {% endfor %}
+  </tr></table>
+ <p>
+   {{ template_form.description.label }}
+   {{ template_form.description() }}
+ </p>
+ <p>
+   {{ template_form.ingredients.label }}
+   {{ template_form.ingredients() }}
+ </p>
+ <p>
+   {{ template_form.instructions.label }}
+   {{ template_form.instructions() }}
+ </p>
+ <p>
+   {{ template_form.submit() }}
+ </p>
+</form>
+
+{% endblock %}
