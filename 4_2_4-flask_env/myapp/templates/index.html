@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Todos</h1>
+
+    {% for todo in todos %}
+      <li>{{ todo }}</li>
+    {% endfor %}
+
+    <form method="POST">
+      {{ template_form.hidden_tag() }}
+      <p>
+        {{ template_form.todo.label }}
+        {{ template_form.todo() }}
+      </p>
+      <p>
+        {{ template_form.submit() }}
+      </p>
+    </form>
+    <br>
+    <p>
+      <h3>Set up virtual environments</h3></h2>
+      <ol>
+        <li>Make folder</li>
+        <li>python3 -m venv myapp_name</li>
+        <li>cd into the app</li>
+        <li>source bin/activate</li>
+        <li>deactivate to exit</li>
+      </ol>
+    </p>
+  </body>
+</html>
