@@ -1,0 +1,36 @@
+/* 
+5. Introduction to SQL and Databses for Back-End Web Apps
+2. Queries
+1. Queries
+10. And
+*/
+
+/*
+Sometimes we want to combine multiple conditions in a WHERE clause to make the
+result set more specific and useful.
+
+One way of doing this is to use the AND operator. here, we use the AND operator
+to only return 90's romance movies. 
+
+SELECT *
+FROM movies
+WHERE year BETWEEN 1990 AND 1999 AND genre = 'romance';
+
+- year BETWEEN 1990 AND 1999 is the 1st condition
+
+- genre = 'romance' is the 2nd condition
+
+- AND combines the two conditions
+
+With AND, both conditions must be true for the row to be included in the
+result.
+
+*/
+
+SELECT *
+FROM movies
+WHERE year BETWEEN 1970 AND 1979 AND imdb_rating > 8;
+
+SELECT *
+FROM movies
+WHERE genre IS 'horror' AND year < 1985;
