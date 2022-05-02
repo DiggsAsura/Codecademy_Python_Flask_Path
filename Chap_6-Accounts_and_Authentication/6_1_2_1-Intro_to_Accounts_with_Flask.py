@@ -22,3 +22,11 @@ to a dinner party, and users will have the power to login and RSVP for the
 fun evening. We'll call it DinnerParty! The sooner we start, the sooner us and
 our friends will be enjoying desserts!
 '''
+
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+  return 'Hello, DinnerParty!'
