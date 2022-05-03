@@ -182,3 +182,4 @@ def index():
   # grab all guests and display them
   current_users = User.query.all()
   return render_template('landing_page.html', current_users=current_users)
+ 
