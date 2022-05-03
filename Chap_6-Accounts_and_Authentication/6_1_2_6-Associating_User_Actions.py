@@ -129,3 +129,44 @@ def login():
   return render_template('login.html', form=form)
 
 # user route
+@app.route('/user/<username>', methods=['GET', 'POST'])
+@login_required
+def user(username):
+  user = User.query.filter_by(username=username).first_or_404()
+  dinner_parties = DinnerParty.query.filter_by(party_host_id=user.id)
+  if form.validate_on_submit():
+    # update the values of each attribute to the corresponding form data here:
+    new_dinner_party = DinnerParty(
+      date = form.date.data,
+      venue = form.venue.data,
+      main_dish = form.main_dish.data,
+      number_seats = int(form.number_seats.data),
+      party_host_id = user.id,
+      attendees = username)
+    db.session.add(new_dinner_party)
+    db.session.commit()
+  return render_template('user.html', user=user, dinner_parties=dinner_parties, form=form)
+
+# rsvp route
+@app.route('/user/<username>/rsvp/', methods=['GET', 'POST'])
+@login_required
+def rsvp(username):
+  user = User.query.filter_by(username=username).first_or_404()
+  dinner_parties = DinnerParty.query.all()
+  if dinner_parties is None:
+    dinner_parties = []
+  form = RsvpForm(csrf_enabled=False)
+  if form.validate_on_submit():
+    # query the DinnerParty model here:
+    dinner_party = DinnerParty.query.filter_by(id=int(form.party_id.data)).first()
+    # update the attendees here:
+    dinner_party.attendees += f', {username}'
+    db.session.commit()
+  return render_template('rsvp.html', user=user, dinner_parties=dinner_parties, form=form)
+
+# landing page route
+@app.route('/')
+def index():
+  # grab all guests and display them
+  current_user = User.query.all()
+  return render_template('landing_page.html', current_users = current_users)
