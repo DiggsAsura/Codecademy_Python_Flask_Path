@@ -1,0 +1,4 @@
+guide
+https://www.youtube.com/watch?v=snN7KkJTz70&t=845s
+
+i still have issues doing the push to heroku. trying to figure it out.
